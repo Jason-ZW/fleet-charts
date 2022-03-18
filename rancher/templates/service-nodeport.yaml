@@ -1,0 +1,28 @@
+{{- if eq .Values.service.type "NodePort" }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "rancher.fullname" . }}-nodeport
+  labels:
+{{ include "rancher.labels" . | indent 4 }}
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      nodePort: {{ .Values.service.ports.httpNodePort }}
+      name: http-80
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+      nodePort: {{ .Values.service.ports.httpsNodePort }}
+      name: https-443
+    - port: 50051
+      targetPort: 50051
+      protocol: TCP
+      nodePort: {{ .Values.service.ports.grpcNodePort }}
+      name: grpc-50051
+  type: NodePort
+  selector:
+    app: {{ template "rancher.fullname" . }}
+{{- end }}

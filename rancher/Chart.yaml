@@ -1,0 +1,15 @@
+apiVersion: v1
+appVersion: v2.5.12-ent
+description: Install Rancher Server to manage Kubernetes clusters across providers.
+home: https://www.rancher.cn/
+icon: https://github.com/rancher/ui/blob/master/public/assets/images/logos/welcome-cow.svg
+keywords:
+- rancher
+- pandaria
+maintainers:
+- email: charts@rancher.com
+  name: Rancher Labs
+name: rancher
+sources:
+- https://github.com/cnrancher/pandaria
+version: 2.5.12-ent

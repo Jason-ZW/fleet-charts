@@ -1,0 +1,69 @@
+{{- if gt (int .Values.auditLog.level) 0 }}
+{{- if eq .Values.auditLog.destination "server" }}
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ template "rancher.fullname" . }}-auditlog-server
+  labels:
+    app: {{ template "rancher.fullname" . }}-auditlog-server
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.auditLogServer.replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "rancher.fullname" . }}-auditlog-server
+  template:
+    metadata:
+      labels:
+        app: {{ template "rancher.fullname" . }}-auditlog-server
+        release: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ template "rancher.fullname" . }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+{{ toYaml .Values.imagePullSecrets | indent 6 }}
+{{- end }}
+      affinity:
+        podAntiAffinity:
+{{- if eq .Values.auditLogServer.antiAffinity "required" }}
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {{ template "rancher.fullname" . }}-auditlog-server
+            topologyKey: kubernetes.io/hostname
+{{- else }}
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ template "rancher.fullname" . }}-auditlog-server
+              topologyKey: kubernetes.io/hostname
+{{- end }}
+      containers:
+      - image: "{{ .Values.auditLogServer.image }}:{{ .Values.auditLogServer.imageTag }}"
+        imagePullPolicy: {{ default "IfNotPresent" .Values.rancherImagePullPolicy }}
+        name: {{ template "rancher.name" . }}-auditlog-server
+        env:
+        - name: PORT
+          value: "{{ .Values.auditLogServer.serverPort }}"
+        - name: DB_HOST
+          value: "{{ .Values.auditLogServer.DBHost }}"
+        - name: DB_PORT
+          value: "{{ .Values.auditLogServer.DBPort }}"
+        - name: DB_USER
+          value: "{{ .Values.auditLogServer.DBUser }}"
+        - name: DB_PASSWORD
+          value: "{{ .Values.auditLogServer.DBPassword }}"
+        - name: DB_NAME
+          value: "{{ .Values.auditLogServer.DBName }}"
+{{- end }}
+{{- end }}
