@@ -1,0 +1,16 @@
+defaultNamespace: cattle-system
+helm:
+  chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/server-charts/latest/rancher-2.5.12-ent.tgz
+targetCustomizations:
+- name: demo
+  helm:
+    values:
+      hostname: zhenyang.think-show.com
+      ingress:
+        tls:
+          source: secret
+      privateCA: true
+      force: true
+  clusterSelector:
+    matchLabels:
+      name: local
