@@ -11,6 +11,8 @@ targetCustomizations:
           source: secret
       privateCA: true
       force: true
+      imagePullSecrets:
+        - name: regcred
   clusterSelector:
     matchLabels:
       name: local
