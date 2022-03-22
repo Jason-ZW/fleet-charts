@@ -26,12 +26,12 @@ diff:
     name: pandaria-rancher-grpc
     namespace: cattle-system
     jsonPointers: # jsonPointers allows to ignore diffs at certain json path
-    - "/metadata/annotations"
-    - "/spec/rules" 
+    - "/metadata"
+    - "/spec" 
   - apiVersion: networking.k8s.io/v1
     kind: Ingress
     name: pandaria-rancher
     namespace: cattle-system
     jsonPointers: # jsonPointers allows to ignore diffs at certain json path
-    - "/metadata/annotations"
-    - "/spec/rules"
+    - "/metadata"
+    - "/spec"
