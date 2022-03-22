@@ -19,19 +19,19 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       name: local
-  diff:
-    comparePatches:
-    - apiVersion: extensions/v1beta1
-      kind: Ingress
-      name: pandaria-rancher-grpc
-      namespace: cattle-system
-      jsonPointers: # jsonPointers allows to ignore diffs at certain json path
-      - "/metadata/annotations"
-      - "/spec/rules" 
-    - apiVersion: networking.k8s.io/v1
-      kind: Ingress
-      name: pandaria-rancher
-      namespace: cattle-system
-      jsonPointers: # jsonPointers allows to ignore diffs at certain json path
-      - "/metadata/annotations"
-      - "/spec/rules"
+diff:
+  comparePatches:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    name: pandaria-rancher-grpc
+    namespace: cattle-system
+    jsonPointers: # jsonPointers allows to ignore diffs at certain json path
+    - "/metadata/annotations"
+    - "/spec/rules" 
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: pandaria-rancher
+    namespace: cattle-system
+    jsonPointers: # jsonPointers allows to ignore diffs at certain json path
+    - "/metadata/annotations"
+    - "/spec/rules"
