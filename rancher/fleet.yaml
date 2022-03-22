@@ -12,28 +12,8 @@ targetCustomizations:
           source: secret
       privateCA: true
       force: true
-      postDelete:
-        namespaceList:
-        - cattle-system
-        - rancher-operator-system
       imagePullSecrets:
         - name: regcred
   clusterSelector:
     matchLabels:
-      name: local
-diff:
-  comparePatches:
-  - apiVersion: extensions/v1beta1
-    kind: Ingress
-    name: pandaria-rancher-grpc
-    namespace: cattle-system
-    jsonPointers:
-    - "/metadata"
-    - "/spec" 
-  - apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    name: pandaria-rancher
-    namespace: cattle-system
-    jsonPointers:
-    - "/metadata"
-    - "/spec"
+      name: demo
