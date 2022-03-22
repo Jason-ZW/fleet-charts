@@ -25,12 +25,13 @@ targetCustomizations:
       kind: Ingress
       name: pandaria-rancher-grpc
       namespace: cattle-system
-      operations:
-      - {"op": "remove", "path": "/metadata/annotations"}
-      - {"op": "remove", "path": "/spec/rules"}
+      jsonPointers: # jsonPointers allows to ignore diffs at certain json path
+      - "/metadata/annotations"
+      - "/spec/rules" 
     - apiVersion: networking.k8s.io/v1
       kind: Ingress
       name: pandaria-rancher
       namespace: cattle-system
-      operations:
-      - {"op": "remove", "path": "/metadata/annotations"}
+      jsonPointers: # jsonPointers allows to ignore diffs at certain json path
+      - "/metadata/annotations"
+      - "/spec/rules"
