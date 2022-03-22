@@ -1,6 +1,6 @@
 defaultNamespace: cattle-system
 helm:
-  chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/server-charts/latest/rancher-2.5.12-ent.tgz
+  chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/2.6-charts/latest/rancher-2.6.3-ent.tgz
 targetCustomizations:
 - name: demo
   helm:
@@ -16,21 +16,3 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       name: local
-diff:
-  comparePatches:
-  - apiVersion: extensions/v1beta1
-    kind: Ingress
-    name: pandaria-rancher
-    namespace: cattle-system
-    operations:
-    - {"op": "remove", "path": "/apiVersion"}
-    - {"op": "remove", "path": "/spec/rules"}
-    - {"op": "remove", "path": "/spec/tls"}
-  - apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    name: pandaria-rancher-grpc
-    namespace: cattle-system
-    operations:
-    - {"op": "remove", "path": "/apiVersion"}
-    - {"op": "remove", "path": "/spec/rules"}
-    - {"op": "remove", "path": "/spec/tls"}
