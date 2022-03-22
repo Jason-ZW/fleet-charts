@@ -23,6 +23,7 @@ diff:
     name: pandaria-rancher
     namespace: cattle-system
     operations:
+    - {"op": "remove", "path": "/apiVersion"}
     - {"op": "remove", "path": "/spec/rules"}
     - {"op": "remove", "path": "/spec/tls"}
   - apiVersion: networking.k8s.io/v1
@@ -30,5 +31,6 @@ diff:
     name: pandaria-rancher-grpc
     namespace: cattle-system
     operations:
+    - {"op": "remove", "path": "/apiVersion"}
     - {"op": "remove", "path": "/spec/rules"}
     - {"op": "remove", "path": "/spec/tls"}
