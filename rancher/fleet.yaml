@@ -28,3 +28,9 @@ targetCustomizations:
     operations:
     - {"op": "remove", "path": "/metadata/annotations"}
     - {"op": "remove", "path": "/spec/rules"}
+  - apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: pandaria-rancher
+    namespace: cattle-system
+    operations:
+    - {"op": "remove", "path": "/metadata/annotations"}
