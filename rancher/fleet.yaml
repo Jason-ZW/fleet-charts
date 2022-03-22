@@ -12,6 +12,8 @@ targetCustomizations:
           source: secret
       privateCA: true
       force: true
+      postDelete:
+        enabled: false
       imagePullSecrets:
         - name: regcred
   clusterSelector:
