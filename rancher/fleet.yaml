@@ -14,8 +14,8 @@ targetCustomizations:
       imagePullSecrets:
         - name: regcred
       extraEnv:
-        - name: CATTLE_PROMETHEUS_METRICS
-          value: true
+      - name: CATTLE_PROMETHEUS_METRICS
+        value: true
   clusterSelector:
     matchLabels:
       name: local
