@@ -19,3 +19,12 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       name: local
+  diff:
+  comparePatches:
+  - apiVersion: extensions/v1beta1
+    kind: Ingress
+    name: pandaria-rancher-grpc
+    namespace: cattle-system
+    operations:
+    - {"op": "remove", "path": "/metadata/annotations"}
+    - {"op": "remove", "path": "/spec/rules"}
