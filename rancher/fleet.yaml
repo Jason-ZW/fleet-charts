@@ -1,7 +1,7 @@
 defaultNamespace: cattle-system
 helm:
-  #chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/server-charts/latest/rancher-2.5.12-ent.tgz
-  chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/2.6-charts/latest/rancher-2.6.3-ent.tgz
+  chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/server-charts/latest/rancher-2.5.12-ent.tgz
+  #chart: https://pandaria-releases.oss-cn-beijing.aliyuncs.com/2.6-charts/latest/rancher-2.6.3-ent.tgz
 targetCustomizations:
 - name: demo
   helm:
@@ -16,4 +16,4 @@ targetCustomizations:
         - name: regcred
   clusterSelector:
     matchLabels:
-      name: demo
+      demo: cnrancher
