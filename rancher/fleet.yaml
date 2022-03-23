@@ -14,6 +14,9 @@ targetCustomizations:
       force: true
       imagePullSecrets:
         - name: regcred
+      postDelete:
+        enabled: false
+      useBundledSystemChart: false
   clusterSelector:
     matchLabels:
       demo: cnrancher
