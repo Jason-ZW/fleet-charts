@@ -20,9 +20,9 @@ targetCustomizations:
       extraEnv:
         - name: CATTLE_PROMETHEUS_METRICS
           value: true
-      auditLog:
-        destination: server
-        level: 3
+      # auditLog:
+        # destination: server
+        # level: 3
   clusterSelector:
     matchLabels:
       demo: cnrancher
