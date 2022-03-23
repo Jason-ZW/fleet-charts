@@ -19,7 +19,7 @@ targetCustomizations:
       useBundledSystemChart: false
       extraEnv:
         - name: CATTLE_PROMETHEUS_METRICS
-          value: true
+          value: "true"
       # auditLog:
         # destination: server
         # level: 3
