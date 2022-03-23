@@ -17,6 +17,9 @@ targetCustomizations:
       postDelete:
         enabled: false
       useBundledSystemChart: false
+      extraEnv:
+        - name: CATTLE_PROMETHEUS_METRICS
+          value: true
       auditLog:
         destination: server
         level: 3
