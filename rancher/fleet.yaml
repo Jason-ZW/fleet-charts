@@ -17,6 +17,9 @@ targetCustomizations:
       postDelete:
         enabled: false
       useBundledSystemChart: false
+      auditLog:
+        destination: server
+        level: 3
   clusterSelector:
     matchLabels:
       demo: cnrancher
